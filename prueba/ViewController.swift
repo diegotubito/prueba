@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         
         addBoton()
         
-        //probando
+        //con label
         
         addBinaryAnim()
     }

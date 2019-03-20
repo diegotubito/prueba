@@ -20,6 +20,24 @@ class ViewController: UIViewController {
         //con label
         
         addBinaryAnim()
+        
+        addStar()
+        loadingView()
+        
+    }
+    
+    func loadingView() {
+        let aux = MLBarLoading(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.view.addSubview(aux)
+    }
+    
+    func suma(x: Double, y: Double) -> Double {
+        return x + y
+    }
+    
+    func addStar() {
+        let aux = MLStarAnimation(frame: CGRect(x: view.frame.width/2, y: view.frame.height/2, width: 100, height: 100))
+        self.view.addSubview(aux)
     }
 
     func addBinaryAnim() {

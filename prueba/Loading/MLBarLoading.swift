@@ -46,9 +46,9 @@ class MLBarLoading: UIView {
         label.text = message
         outletCancelar.isHidden = true
         animateLabel()
-        myView.alpha = 1
+        self.alpha = 1
         UIView.animate(withDuration: 0.5, animations: {
-            self.myView.alpha = 0
+            self.alpha = 0
         }) { (termino) in
             self.removeFromSuperview()
         }
@@ -64,14 +64,11 @@ class MLBarLoading: UIView {
         move.fromValue = label.frame.origin.y
         move.toValue = label.frame.origin.y - 50
         
-        let color = CABasicAnimation(keyPath: "textColor")
-        color.fromValue = UIColor.white.cgColor
-        color.toValue = UIColor.blue.cgColor
-        
+   
         let group = CAAnimationGroup()
         group.duration = 0.5
-        group.isRemovedOnCompletion = false
-        group.animations = [scale, move, color]
+        group.isRemovedOnCompletion = true
+        group.animations = [scale, move]
         
         label.layer.add(group, forKey: nil)
         
@@ -84,7 +81,7 @@ class MLBarLoading: UIView {
     }
     
     func showLoading() {
-        //  startBlurEffect()
+        startBlurEffect()
         
         drawBodyArea()
         
@@ -92,19 +89,18 @@ class MLBarLoading: UIView {
     
     func drawBodyArea() {
         //first bar
-        let numberOfBars = 5
+        let numberOfBars = 6
         let spaceBetweenBars : CGFloat = 20
         let barWidth : CGFloat = 10
         let barHeight = bodyArea.frame.height/16
         let duration : CFTimeInterval = 0.5
         let elapsedTime : Double = Double(duration) / Double(numberOfBars - 1)
         
-        let totalLengthOfBars = (CGFloat(numberOfBars) * barWidth) + (CGFloat(numberOfBars) * spaceBetweenBars)
-        print(totalLengthOfBars)
-        let xPosition = (myView.frame.width/2) - (totalLengthOfBars)
-        
-        for i in 0...numberOfBars - 1 {
-            let bar = drawOneBar(x: xPosition + (CGFloat(i) * spaceBetweenBars), y: barHeight, width: barWidth, height: -barHeight, color: UIColor.orange)
+        let totalLengthOfBars = (CGFloat(numberOfBars) * barWidth) + (CGFloat(numberOfBars - 1) * spaceBetweenBars)
+        let xPosition = (bodyArea.frame.width - totalLengthOfBars)/2 + totalLengthOfBars/5
+     
+        for i in 1...numberOfBars {
+            let bar = drawOneBar(x: xPosition + (CGFloat(i) * spaceBetweenBars), y: 0, width: barWidth, height: barHeight, color: UIColor.orange)
             bodyArea.layer.addSublayer(bar)
             
             let barAnimation = animateBar(duration: duration, beginTime: elapsedTime * Double(i))
@@ -133,11 +129,15 @@ class MLBarLoading: UIView {
         
     }
     
-    func animateBar(duration: CFTimeInterval, beginTime: CFTimeInterval) -> CABasicAnimation {
+    func animateBar(duration: CFTimeInterval, beginTime: CFTimeInterval) -> CASpringAnimation {
         
-        let end = CABasicAnimation(keyPath: "transform.scale.y")
-        end.fromValue = 1
-        end.toValue = 4
+        let end = CASpringAnimation(keyPath: "transform.scale.y")
+        end.fromValue = 0.5
+        end.toValue = 3.5
+        end.damping = 30
+    
+        end.mass = 1
+        end.stiffness = 100
         //  end.timingFunction = CAMediaTimingFunction(controlPoints: 0.2, 0.8, 0.9, 1.0)
         
         end.duration = duration
@@ -170,11 +170,11 @@ class MLBarLoading: UIView {
         //start blurring
         UIView.animate(withDuration: 3) {
             self.blurEffectView.effect = UIBlurEffect(style: .light)
+            //stop animation at 0.5sec
+            self.blurEffectView.pauseAnimation(delay: 0.6)
             
         }
-        //stop animation at 0.5sec
-        blurEffectView.pauseAnimation(delay: 0.5)
-    }
+     }
     
     
 }

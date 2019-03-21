@@ -9,9 +9,17 @@
 import Foundation
 import UIKit
 
+protocol MLBarLoadingDelegate {
+    func cancelPressedDelegate()
+}
+
 class MLBarLoading: UIView {
+    var delegate : MLBarLoadingDelegate?
+    
     var blurEffectView : UIVisualEffectView!
     
+    @IBOutlet var outletCancelar: UIButton!
+    @IBOutlet var label: UILabel!
     @IBOutlet var myView: UIView!
     @IBOutlet weak var borderArea: UIView!
     @IBOutlet weak var bodyArea: UIView!
@@ -32,71 +40,114 @@ class MLBarLoading: UIView {
         myView.frame = contentFrame
         addSubview(myView)
         
-        start()
     }
     
-    func start() {
-       // startBlurEffect()
+    func hideLoading(message: String) {
+        label.text = message
+        outletCancelar.isHidden = true
+        animateLabel()
+        myView.alpha = 1
+        UIView.animate(withDuration: 1, animations: {
+            self.myView.alpha = 0
+        }) { (termino) in
+            self.removeFromSuperview()
+        }
+    }
+    
+    func animateLabel() {
+        let scale = CABasicAnimation(keyPath: "transform.scale")
+        scale.fromValue = 1
+        scale.toValue = 3
+        
+        let move = CABasicAnimation(keyPath: "position.y")
+        move.fromValue = label.frame.origin.y
+        move.toValue = label.frame.origin.y - 50
+        
+        let color = CABasicAnimation(keyPath: "textColor")
+        color.fromValue = UIColor.white.cgColor
+        color.toValue = UIColor.blue.cgColor
+        
+        let group = CAAnimationGroup()
+        group.duration = 1
+        group.isRemovedOnCompletion = false
+        group.animations = [scale, move, color]
+        
+        label.layer.add(group, forKey: nil)
+        
+    }
+    
+    
+    @IBAction func cancelPressed(_ sender: Any) {
+        //     outletCancelar.isHidden = true
+        //   hideLoading(message: "Acción cancelada")
+        delegate?.cancelPressedDelegate()
+    }
+    
+    func showLoading() {
+        //  startBlurEffect()
+        
         drawBodyArea()
+        
     }
     
     func drawBodyArea() {
-        drawOneBar()
+        //first bar
+        let numberOfBars = 5
+        let spaceBetweenBars : CGFloat = 20
+        let barWidth : CGFloat = 10
+        let barHeight = bodyArea.frame.height/16
+        let duration : CFTimeInterval = 0.5
+        let elapsedTime : Double = Double(duration) / Double(numberOfBars - 1)
+        
+        let totalLengthOfBars = (CGFloat(numberOfBars) * barWidth) + (CGFloat(numberOfBars - 1) * spaceBetweenBars)
+        let xPosition = (myView.frame.width - totalLengthOfBars) / 4
+        
+        for i in 0...numberOfBars - 1 {
+            let bar = drawOneBar(x: xPosition + (CGFloat(i) * spaceBetweenBars), y: barHeight, width: barWidth, height: -barHeight, color: UIColor.orange)
+            bodyArea.layer.addSublayer(bar)
+            
+            let barAnimation = animateBar(duration: duration, beginTime: elapsedTime * Double(i))
+            bar.add(barAnimation, forKey: "bar-animation")
+            
+        }
+        
+        
     }
     
-    func drawOneBar() {
+    func drawOneBar(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, color: UIColor) -> CAShapeLayer {
         let linePath = UIBezierPath()
-        linePath.move(to: CGPoint(x: 0, y: 0))
-        linePath.addLine(to: CGPoint(x: 0, y: bodyArea.frame.height))
+        linePath.move(to: CGPoint(x: x, y: y))
+        linePath.addLine(to: CGPoint(x: x, y: height))
         linePath.close()
         
         let barShapeLayer = CAShapeLayer()
         barShapeLayer.fillColor = UIColor.clear.cgColor
-        barShapeLayer.strokeColor = UIColor.orange.cgColor
-        barShapeLayer.lineWidth = 10
+        barShapeLayer.strokeColor = color.cgColor
+        barShapeLayer.lineWidth = width
         barShapeLayer.lineCap = .round
         barShapeLayer.lineJoin = .round
         barShapeLayer.path = linePath.cgPath
-        bodyArea.layer.addSublayer(barShapeLayer)
         
-        animateBar(bar: barShapeLayer)
+        return barShapeLayer
         
     }
     
-    func animateBar(bar: CAShapeLayer) {
-        // 1)
-        let duration: CFTimeInterval = 2
+    func animateBar(duration: CFTimeInterval, beginTime: CFTimeInterval) -> CABasicAnimation {
         
-        // 2)
-        let end = CABasicAnimation(keyPath: "strokeEnd")
-        end.fromValue = 0
-        end.toValue = 1.0175
-        end.beginTime = 0
-        end.duration = duration * 0.75
-        end.timingFunction = CAMediaTimingFunction(controlPoints: 0.2, 0.88, 0.09, 0.99)
-        end.fillMode = CAMediaTimingFillMode.forwards
+        let end = CABasicAnimation(keyPath: "transform.scale.y")
+        end.fromValue = 1
+        end.toValue = 4
+        //  end.timingFunction = CAMediaTimingFunction(controlPoints: 0.2, 0.8, 0.9, 1.0)
         
-        // 3)
-        let begin = CABasicAnimation(keyPath: "strokeStart")
-        begin.fromValue = 0
-        begin.toValue = 1.0175
-        begin.beginTime = duration * 0.15
-        begin.duration = duration * 0.75
-        begin.timingFunction = CAMediaTimingFunction(controlPoints: 0.2, 0.88, 0.09, 0.99)
-        begin.fillMode = CAMediaTimingFillMode.backwards
-        
-        // 4)
-        let group = CAAnimationGroup()
-        group.animations = [end, begin]
-        group.duration = duration
-        group.repeatCount = Float.infinity
-    //    group.autoreverses = true
-        
-    
-        // 6)
-        bar.add(group, forKey: "bar-animation")
+        end.duration = duration
+        end.beginTime = beginTime
+        end.repeatCount = Float.infinity
+        end.isRemovedOnCompletion = true
+        end.autoreverses = true
+        return end
         
     }
+    
     
     func createShape() -> CAShapeLayer {
         let shape = CAShapeLayer()
@@ -123,8 +174,9 @@ class MLBarLoading: UIView {
         //stop animation at 0.5sec
         blurEffectView.pauseAnimation(delay: 0.5)
     }
+    
+    
 }
-
 
 extension UIView {
     public func pauseAnimation(delay: Double) {

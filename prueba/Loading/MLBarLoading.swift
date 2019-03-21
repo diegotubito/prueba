@@ -47,11 +47,12 @@ class MLBarLoading: UIView {
         outletCancelar.isHidden = true
         animateLabel()
         myView.alpha = 1
-        UIView.animate(withDuration: 1, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             self.myView.alpha = 0
         }) { (termino) in
             self.removeFromSuperview()
         }
+ 
     }
     
     func animateLabel() {
@@ -68,7 +69,7 @@ class MLBarLoading: UIView {
         color.toValue = UIColor.blue.cgColor
         
         let group = CAAnimationGroup()
-        group.duration = 1
+        group.duration = 0.5
         group.isRemovedOnCompletion = false
         group.animations = [scale, move, color]
         
@@ -78,8 +79,7 @@ class MLBarLoading: UIView {
     
     
     @IBAction func cancelPressed(_ sender: Any) {
-        //     outletCancelar.isHidden = true
-        //   hideLoading(message: "Acción cancelada")
+        hideLoading(message: "Acción cancelada")
         delegate?.cancelPressedDelegate()
     }
     
@@ -99,8 +99,9 @@ class MLBarLoading: UIView {
         let duration : CFTimeInterval = 0.5
         let elapsedTime : Double = Double(duration) / Double(numberOfBars - 1)
         
-        let totalLengthOfBars = (CGFloat(numberOfBars) * barWidth) + (CGFloat(numberOfBars - 1) * spaceBetweenBars)
-        let xPosition = (myView.frame.width - totalLengthOfBars) / 4
+        let totalLengthOfBars = (CGFloat(numberOfBars) * barWidth) + (CGFloat(numberOfBars) * spaceBetweenBars)
+        print(totalLengthOfBars)
+        let xPosition = (myView.frame.width/2) - (totalLengthOfBars)
         
         for i in 0...numberOfBars - 1 {
             let bar = drawOneBar(x: xPosition + (CGFloat(i) * spaceBetweenBars), y: barHeight, width: barWidth, height: -barHeight, color: UIColor.orange)

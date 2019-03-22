@@ -22,7 +22,12 @@ class ViewController: UIViewController {
      //   addBinaryAnim()
         
         addStar()
-        loadingView()
+   //     loadingView()
+        MLBarLoaderSingleton.color = .red
+        MLBarLoaderSingleton.numberOfBars = 6
+        MLBarLoaderSingleton.spaceBetweenBars = 17
+        MLBarLoaderSingleton.showLoading(controller: self, message: "Cargando")
+   //     MLBarLoaderSingleton.hideLoading()
         
     }
     
@@ -30,6 +35,8 @@ class ViewController: UIViewController {
         let aux = MLBarLoading(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         aux.showLoading()
         self.view.addSubview(aux)
+        
+       
     }
     
     func suma(x: Double, y: Double) -> Double {

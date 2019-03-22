@@ -89,18 +89,20 @@ class MLBarLoading: UIView {
     
     func drawBodyArea() {
         //first bar
-        let numberOfBars = 6
-        let spaceBetweenBars : CGFloat = 20
+        let numberOfBars = 5
+        let spaceBetweenBars : CGFloat = 25
         let barWidth : CGFloat = 10
         let barHeight = bodyArea.frame.height/16
         let duration : CFTimeInterval = 0.5
         let elapsedTime : Double = Double(duration) / Double(numberOfBars - 1)
         
         let totalLengthOfBars = (CGFloat(numberOfBars) * barWidth) + (CGFloat(numberOfBars - 1) * spaceBetweenBars)
-        let xPosition = (bodyArea.frame.width - totalLengthOfBars)/2 + totalLengthOfBars/5
-     
-        for i in 1...numberOfBars {
-            let bar = drawOneBar(x: xPosition + (CGFloat(i) * spaceBetweenBars), y: 0, width: barWidth, height: barHeight, color: UIColor.orange)
+        let xPosition = (bodyArea.frame.width - totalLengthOfBars)/2
+        //para que quede centrado, es una compensacion. con la linea anterior deberia ser suficiente si no usara lineWidth
+        let compensacionPorAnchoDeBarras = (CGFloat(numberOfBars)*barWidth)/2
+        
+        for i in 0...numberOfBars - 1{
+            let bar = drawOneBar(x: compensacionPorAnchoDeBarras + xPosition + (CGFloat(i) * spaceBetweenBars), y: 0, width: barWidth, height: barHeight, color: UIColor.red)
             bodyArea.layer.addSublayer(bar)
             
             let barAnimation = animateBar(duration: duration, beginTime: elapsedTime * Double(i))
@@ -121,7 +123,7 @@ class MLBarLoading: UIView {
         barShapeLayer.fillColor = UIColor.clear.cgColor
         barShapeLayer.strokeColor = color.cgColor
         barShapeLayer.lineWidth = width
-        barShapeLayer.lineCap = .round
+      //  barShapeLayer.lineCap = .round
         barShapeLayer.lineJoin = .round
         barShapeLayer.path = linePath.cgPath
         

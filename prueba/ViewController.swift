@@ -14,29 +14,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         addBoton()
-        
-        //con label
-        
      //   addBinaryAnim()
-        
         addStar()
-        DDBarLoader.showLoading(controller: self, message: "carga")
-        DDBarLoader.hideLoading()
-        
-    }
+     }
     
-    func loadingView() {
-        let aux = MLBarLoading(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        aux.showLoading()
-        self.view.addSubview(aux)
-        
-       
-    }
-    
-    func suma(x: Double, y: Double) -> Double {
-        return x + y
+    override func viewDidAppear(_ animated: Bool) {
+        if isViewLoaded {
+            DDBarLoader.showLoading(controller: self, message: "carga")
+            
+
+        }
     }
     
     func addStar() {

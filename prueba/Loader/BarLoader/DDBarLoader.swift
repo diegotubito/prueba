@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class DDBarLoader {
-    var instance = DDBarLoader()
+    fileprivate static var instance = DDBarLoader()
     
     //user parameters
     public static var roundedCap : Bool = false
@@ -27,12 +27,12 @@ class DDBarLoader {
     //private parameters
     private static let totalLengthOfBars : CGFloat = (CGFloat(numberOfBars) * barWidth) + (CGFloat(numberOfBars - 1) * spaceBetweenBars)
     private static var blurEffectView : UIVisualEffectView!
-    
     private static var ancho : CGFloat!
     private static var alto : CGFloat!
     private static var borderArea : UIView!
     private static var bodyArea : UIView!
     private static var loadingMessage : String = "Desacarga"
+    private static var label : UILabel!
     
     static var viewController : UIViewController!
     
@@ -60,15 +60,15 @@ class DDBarLoader {
     static func hideLoading() {
         removeAllViews()
     }
+  
 }
 
 //drawing
 extension DDBarLoader {
-    
+   
     fileprivate static func removeAllViews() {
         borderArea.removeFromSuperview()
         bodyArea.removeFromSuperview()
-        
     }
     
     fileprivate static func drawBodyArea() {
@@ -86,7 +86,7 @@ extension DDBarLoader {
     }
     
     fileprivate static func drawLabel() {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: ancho, height: alto))
+        label = UILabel(frame: CGRect(x: 0, y: 0, width: ancho, height: alto))
         label.textAlignment = .center
         label.textColor = UIColor.white
         label.text = loadingMessage
@@ -112,6 +112,9 @@ extension DDBarLoader {
 
 //some animations and effects
 extension DDBarLoader {
+    
+  
+    
     fileprivate static func animateBar(duration: CFTimeInterval, beginTime: CFTimeInterval) -> CASpringAnimation {
         
         let animation = CASpringAnimation(keyPath: "transform.scale.y")
@@ -131,6 +134,29 @@ extension DDBarLoader {
         return animation
         
     }
+    
+    //not used at the moment
+/*    fileprivate static func labelAnimation() -> CAAnimationGroup {
+        let scale = CABasicAnimation(keyPath: "transform.scale")
+        scale.fromValue = 1
+        scale.toValue = 5
+        
+        let move = CABasicAnimation(keyPath: "position.y")
+        move.toValue = bodyArea.bounds.origin.y/2
+
+        let fade = CABasicAnimation(keyPath: "opacity")
+        fade.toValue = 0
+
+        
+        let group = CAAnimationGroup()
+        group.duration = 0.5
+        group.isRemovedOnCompletion = true
+        group.animations = [scale, move, fade]
+        
+        return group
+        
+    }
+*/
     
     fileprivate static func startBlurEffect() {
         borderArea.layer.backgroundColor = UIColor.clear.cgColor
@@ -170,3 +196,4 @@ extension DDBarLoader {
         viewController?.view.addSubview(bodyArea)
     }
 }
+

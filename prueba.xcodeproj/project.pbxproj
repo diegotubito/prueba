@@ -16,8 +16,6 @@
 		888E086D2226F51B001CA69F /* MLBotonCircularCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888E086C2226F51B001CA69F /* MLBotonCircularCV.swift */; };
 		88972BCB223FEBFA008B18C4 /* MLStarPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88972BCA223FEBFA008B18C4 /* MLStarPath.swift */; };
 		88A1830E2242812200B2C0B8 /* pruebaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A1830D2242812200B2C0B8 /* pruebaTests.swift */; };
-		88CC8F602242D1FA006B745A /* MLBarLoading.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC8F5F2242D1FA006B745A /* MLBarLoading.xib */; };
-		88CC8F622242D210006B745A /* MLBarLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC8F612242D210006B745A /* MLBarLoading.swift */; };
 		88D202BE2231B5D1007B5430 /* MLBubbleAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D202BD2231B5D1007B5430 /* MLBubbleAnimation.swift */; };
 		88DBE8EA2237F4440079C4BE /* MLCloudPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBE8E92237F4440079C4BE /* MLCloudPath.swift */; };
 		88E9C80F22297BCB00777FDA /* MLBotonRectangular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E9C80E22297BCB00777FDA /* MLBotonRectangular.swift */; };
@@ -47,8 +45,6 @@
 		88A1830B2242812200B2C0B8 /* pruebaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pruebaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88A1830D2242812200B2C0B8 /* pruebaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pruebaTests.swift; sourceTree = "<group>"; };
 		88A1830F2242812200B2C0B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88CC8F5F2242D1FA006B745A /* MLBarLoading.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MLBarLoading.xib; sourceTree = "<group>"; };
-		88CC8F612242D210006B745A /* MLBarLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLBarLoading.swift; sourceTree = "<group>"; };
 		88D202BD2231B5D1007B5430 /* MLBubbleAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLBubbleAnimation.swift; sourceTree = "<group>"; };
 		88DBE8E92237F4440079C4BE /* MLCloudPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLCloudPath.swift; sourceTree = "<group>"; };
 		88E9C80E22297BCB00777FDA /* MLBotonRectangular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLBotonRectangular.swift; sourceTree = "<group>"; };
@@ -112,7 +108,6 @@
 				888E08542226E913001CA69F /* AppDelegate.swift */,
 				888E08562226E913001CA69F /* ViewController.swift */,
 				844E74112245B3E70015051C /* Loader */,
-				88CC8F5E2242D1B1006B745A /* Loading */,
 				88DBE8E72237F4190079C4BE /* MyPaths */,
 				88D202BB2231B57D007B5430 /* Animacion */,
 				888E08662226F4CD001CA69F /* Botones */,
@@ -156,15 +151,6 @@
 				88A1830F2242812200B2C0B8 /* Info.plist */,
 			);
 			path = pruebaTests;
-			sourceTree = "<group>";
-		};
-		88CC8F5E2242D1B1006B745A /* Loading */ = {
-			isa = PBXGroup;
-			children = (
-				88CC8F5F2242D1FA006B745A /* MLBarLoading.xib */,
-				88CC8F612242D210006B745A /* MLBarLoading.swift */,
-			);
-			path = Loading;
 			sourceTree = "<group>";
 		};
 		88D202BB2231B57D007B5430 /* Animacion */ = {
@@ -290,7 +276,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				888E085F2226E91C001CA69F /* LaunchScreen.storyboard in Resources */,
-				88CC8F602242D1FA006B745A /* MLBarLoading.xib in Resources */,
 				888E085C2226E91C001CA69F /* Assets.xcassets in Resources */,
 				888E085A2226E913001CA69F /* Main.storyboard in Resources */,
 			);
@@ -311,7 +296,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				88D202BE2231B5D1007B5430 /* MLBubbleAnimation.swift in Sources */,
-				88CC8F622242D210006B745A /* MLBarLoading.swift in Sources */,
 				88DBE8EA2237F4440079C4BE /* MLCloudPath.swift in Sources */,
 				888E08572226E913001CA69F /* ViewController.swift in Sources */,
 				888E086D2226F51B001CA69F /* MLBotonCircularCV.swift in Sources */,

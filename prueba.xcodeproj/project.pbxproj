@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84290EB42244853C00FFCCAF /* MLBarLoaderSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84290EB32244853C00FFCCAF /* MLBarLoaderSingleton.swift */; };
+		844E74142245B40F0015051C /* DDBarLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E74132245B40F0015051C /* DDBarLoader.swift */; };
 		888E08552226E913001CA69F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888E08542226E913001CA69F /* AppDelegate.swift */; };
 		888E08572226E913001CA69F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888E08562226E913001CA69F /* ViewController.swift */; };
 		888E085A2226E913001CA69F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 888E08582226E913001CA69F /* Main.storyboard */; };
@@ -34,7 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		84290EB32244853C00FFCCAF /* MLBarLoaderSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLBarLoaderSingleton.swift; sourceTree = "<group>"; };
+		844E74132245B40F0015051C /* DDBarLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDBarLoader.swift; sourceTree = "<group>"; };
 		888E08512226E913001CA69F /* prueba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = prueba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		888E08542226E913001CA69F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		888E08562226E913001CA69F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,12 +72,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		84290EB22244850500FFCCAF /* LoaderSingleton */ = {
+		844E74112245B3E70015051C /* Loader */ = {
 			isa = PBXGroup;
 			children = (
-				84290EB32244853C00FFCCAF /* MLBarLoaderSingleton.swift */,
+				844E74122245B3F10015051C /* BarLoader */,
 			);
-			path = LoaderSingleton;
+			path = Loader;
+			sourceTree = "<group>";
+		};
+		844E74122245B3F10015051C /* BarLoader */ = {
+			isa = PBXGroup;
+			children = (
+				844E74132245B40F0015051C /* DDBarLoader.swift */,
+			);
+			path = BarLoader;
 			sourceTree = "<group>";
 		};
 		888E08482226E913001CA69F = {
@@ -103,7 +111,7 @@
 			children = (
 				888E08542226E913001CA69F /* AppDelegate.swift */,
 				888E08562226E913001CA69F /* ViewController.swift */,
-				84290EB22244850500FFCCAF /* LoaderSingleton */,
+				844E74112245B3E70015051C /* Loader */,
 				88CC8F5E2242D1B1006B745A /* Loading */,
 				88DBE8E72237F4190079C4BE /* MyPaths */,
 				88D202BB2231B57D007B5430 /* Animacion */,
@@ -302,13 +310,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84290EB42244853C00FFCCAF /* MLBarLoaderSingleton.swift in Sources */,
 				88D202BE2231B5D1007B5430 /* MLBubbleAnimation.swift in Sources */,
 				88CC8F622242D210006B745A /* MLBarLoading.swift in Sources */,
 				88DBE8EA2237F4440079C4BE /* MLCloudPath.swift in Sources */,
 				888E08572226E913001CA69F /* ViewController.swift in Sources */,
 				888E086D2226F51B001CA69F /* MLBotonCircularCV.swift in Sources */,
 				88E9C80F22297BCB00777FDA /* MLBotonRectangular.swift in Sources */,
+				844E74142245B40F0015051C /* DDBarLoader.swift in Sources */,
 				888E08552226E913001CA69F /* AppDelegate.swift in Sources */,
 				88972BCB223FEBFA008B18C4 /* MLStarPath.swift in Sources */,
 			);

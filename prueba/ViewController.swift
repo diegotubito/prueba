@@ -22,12 +22,8 @@ class ViewController: UIViewController {
      //   addBinaryAnim()
         
         addStar()
-   //     loadingView()
-        MLBarLoaderSingleton.color = .red
-        MLBarLoaderSingleton.numberOfBars = 6
-        MLBarLoaderSingleton.spaceBetweenBars = 17
-        MLBarLoaderSingleton.showLoading(controller: self, message: "Cargando")
-   //     MLBarLoaderSingleton.hideLoading()
+        DDBarLoader.showLoading(controller: self, message: "carga")
+        DDBarLoader.hideLoading()
         
     }
     

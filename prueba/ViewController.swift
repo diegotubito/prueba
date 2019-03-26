@@ -9,22 +9,29 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let transition = popAnimator()
 
     @IBOutlet weak var botonCircular: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        addBoton()
+    //    addBoton()
      //   addBinaryAnim()
-        addStar()
+    //    addStar()
+        transition.dismissCompletion = {
+          //  self.selectedImage!.isHidden = false
+        }
      }
     
+    @IBAction func tapped(_ sender: Any) {
+        //present details view controller
+        let herbDetails = storyboard!.instantiateViewController(withIdentifier: "secondViewController") as! secondViewController
+        herbDetails.transitioningDelegate = self
+        present(herbDetails, animated: true, completion: nil)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-        if isViewLoaded {
-            DDBarLoader.showLoading(controller: self, message: "carga")
-            
-
-        }
+      
     }
     
     func addStar() {
@@ -43,3 +50,17 @@ class ViewController: UIViewController {
     }
 }
 
+
+extension ViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+       
+        transition.presenting = true
+        
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = false
+        return transition
+    }
+}

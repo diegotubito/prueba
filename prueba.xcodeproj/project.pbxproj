@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		844E74142245B40F0015051C /* DDBarLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E74132245B40F0015051C /* DDBarLoader.swift */; };
+		844E74172249A4900015051C /* popViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E74162249A4900015051C /* popViewController.swift */; };
+		844E74192249A6530015051C /* secondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E74182249A6530015051C /* secondViewController.swift */; };
 		888E08552226E913001CA69F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888E08542226E913001CA69F /* AppDelegate.swift */; };
 		888E08572226E913001CA69F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888E08562226E913001CA69F /* ViewController.swift */; };
 		888E085A2226E913001CA69F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 888E08582226E913001CA69F /* Main.storyboard */; };
@@ -33,6 +35,8 @@
 
 /* Begin PBXFileReference section */
 		844E74132245B40F0015051C /* DDBarLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDBarLoader.swift; sourceTree = "<group>"; };
+		844E74162249A4900015051C /* popViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popViewController.swift; sourceTree = "<group>"; };
+		844E74182249A6530015051C /* secondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondViewController.swift; sourceTree = "<group>"; };
 		888E08512226E913001CA69F /* prueba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = prueba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		888E08542226E913001CA69F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		888E08562226E913001CA69F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +88,14 @@
 			path = BarLoader;
 			sourceTree = "<group>";
 		};
+		844E74152249A47B0015051C /* AnimationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				844E74162249A4900015051C /* popViewController.swift */,
+			);
+			path = AnimationViewController;
+			sourceTree = "<group>";
+		};
 		888E08482226E913001CA69F = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +119,8 @@
 			children = (
 				888E08542226E913001CA69F /* AppDelegate.swift */,
 				888E08562226E913001CA69F /* ViewController.swift */,
+				844E74182249A6530015051C /* secondViewController.swift */,
+				844E74152249A47B0015051C /* AnimationViewController */,
 				844E74112245B3E70015051C /* Loader */,
 				88DBE8E72237F4190079C4BE /* MyPaths */,
 				88D202BB2231B57D007B5430 /* Animacion */,
@@ -299,9 +313,11 @@
 				88DBE8EA2237F4440079C4BE /* MLCloudPath.swift in Sources */,
 				888E08572226E913001CA69F /* ViewController.swift in Sources */,
 				888E086D2226F51B001CA69F /* MLBotonCircularCV.swift in Sources */,
+				844E74172249A4900015051C /* popViewController.swift in Sources */,
 				88E9C80F22297BCB00777FDA /* MLBotonRectangular.swift in Sources */,
 				844E74142245B40F0015051C /* DDBarLoader.swift in Sources */,
 				888E08552226E913001CA69F /* AppDelegate.swift in Sources */,
+				844E74192249A6530015051C /* secondViewController.swift in Sources */,
 				88972BCB223FEBFA008B18C4 /* MLStarPath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
